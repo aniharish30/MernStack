@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stopwatch</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+  <div class="bg-white p-6 rounded shadow w-64 text-center">
+    <h1 class="text-2xl font-bold mb-4">Stopwatch</h1>
+
+    <!-- Time Display -->
+    <div id="display" class="text-4xl font-mono mb-4">
+      0
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-between">
+      <button onclick="startTimer()" class="bg-green-500 text-white px-3 py-1 rounded">
+        Start
+      </button>
+
+      <button onclick="stopTimer()" class="bg-red-500 text-white px-3 py-1 rounded">
+        Stop
+      </button>
+
+      <button onclick="resumeTimer()" class="bg-blue-500 text-white px-3 py-1 rounded">
+        Resume
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let time = 0;          // stores seconds
+    let timer = null;     // stores interval ID
+
+    function startTimer() {
+      if (timer !== null) return; // prevent multiple intervals
+
+      timer = setInterval(() => {
+        time++;
+        document.getElementById("display").innerText = time;
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function resumeTimer() {
+      startTimer(); // same as start, but time is not reset
+    }
+  </script>
+
+</body>
+</html>
